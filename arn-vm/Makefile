@@ -5,15 +5,11 @@ SRC = ${wildcard src/*.c}
 HDR = ${wildcard include/*.h}
 OBJ = ${SRC:.c=.o}
 EXEC = arn
-
-all: ${SRC} ${OBJ} ${EXEC}
-
+all:${SRC} ${OBJ} ${EXEC}
 ${EXEC}: ${OBJ}
 	${CC} ${LDFLAGS} $^ -o $@
-
-%.o %.c ${HDR}
+%.o: %.c ${HDR}
 	${CC} ${CFLAGS} $< -o $@
 
 clean:
-	rm *.o ${EXEC}
-	
+	rm src/*.o ${EXEC}
