@@ -1,9 +1,10 @@
-#include "util.h"
+#include "../include/util.h"
 
 char* read_ascii_file(const char* path){
     //Create a file
     FILE *file = fopen(path, "r");
     
+    //Error checks
     if(!file){
         printf("Couldn't open file %s\n", path);
         return NULL;
@@ -18,6 +19,7 @@ char* read_ascii_file(const char* path){
     //Reads the file
     char* buf = (char*)malloc(sizeof(char) * (size + 1));
 
+    //Error checks
     if(!buf){
         printf("Couldn't allocate memory for file\n");
         return NULL;
