@@ -18,6 +18,7 @@ ParserStatus parser_start(TokenList* list, const char* source){
         
         lex[lexi] = '\0';
 
+
         if(lex[0] == '#'){
             int num = parser_get_number(lex);
             printf("NUMBER: %d\n", num);
@@ -63,6 +64,12 @@ uint32_t parser_get_number(const char* buf){
 TokenInst parser_get_inst(const char* buf){
     if(strcmp(buf, "add") == 0){
         return ADD;
+    }
+    if(strcmp(buf, "sum") == 0){
+        return SUM;
+    }
+    if(strcmp(buf, "hlt") == 0){
+        return HLT;
     }
     else{
         return (TokenInst)-1;

@@ -22,13 +22,21 @@ void token_list_create(TokenList* list, int size){
 void token_list_add(TokenList* list, Token* tok){
 
     if(list->ptr >= list->size){
-        list->size * 2;
+        list->size *= 2;
         list->data = (Token**) realloc(list->data, sizeof(Token*) * list->size);
     }
 
-    list->data[list->ptr++] = tok;  
+    list->data[list->ptr++] = tok;
 }
 
 Token* token_list_get(TokenList* list, int index){
     return list->data[index];
+}
+
+void token_list_destroy(TokenList* list){
+    for(int i = 0; i < list->ptr; i++){
+        free(list->data[i]);
+    }
+    
+    free(list->data);
 }

@@ -15,20 +15,21 @@ int main (int argc, char **argv) {
    }
 
    if(strcmp(argv[1], "arnnn") == 0){
-       char* source = read_ascii_file(argv[2]);
-       TokenList tokens;
-       token_list_create(&tokens, 1);
-       ParserStatus pstat = parser_start(&tokens, source);
-       if(pstat != PARSER_SUCCES){
-           return 1;
-       }
+        char* source = read_ascii_file(argv[2]);
+        TokenList tokens;
+        token_list_create(&tokens, 1);
+        ParserStatus pstat = parser_start(&tokens, source);
+        if(pstat != PARSER_SUCCES){
+            return 1;
+        }
 
-       for(int i = 0; i < tokens.ptr; i++){
-           Token* t = token_list_get(&tokens, i);
-           printf("%d, %d, %d\n", t->type, t->data, t->line);
-       }
+        for(int i = 0; i < tokens.ptr; i++){
+            Token* t = token_list_get(&tokens, i);
+            printf("%d, %d, %d\n", t->type, t->data, t->line);
+        }
 
-       free(source);
+        token_list_destroy(&tokens);
+        free(source);
    }
    
    return 0;
